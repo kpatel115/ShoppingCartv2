@@ -28,13 +28,23 @@ function addItem(name, price) {
 function showItem() { 
   const qty = getQuantity();
   const total = getTotal();
-
-  let itemString = "" // list of ul
+  let itemString = "" //console.log( `${cart[i].name} ${cart[i].price} x ${cart[i].qty}` )
   
   // listing items with price and quantity
   for (let i = 0; i < cart.length; i += 1) {
-    //console.log( `${cart[i].name} ${cart[i].price} x ${cart[i].qty}` )
-    itemString += `<li>${cart[i].name} ${cart[i].price} x ${cart[i].qty}</li>`
+    /** 
+    const name = cart[i].name
+    const price = cart[i].price
+    const qty = cart[i].qty
+    */
+    //{name:"Apple", price: 0.99, qty:3}
+    const {name, price, qty} = cart[i]
+    
+    itemString += `<li>
+      ${name} 
+      $${price} x ${qty} = 
+      ${qty * price}</li>`
+
   }
   itemList.innerHTML = itemString
   // set to DOM with inner html
