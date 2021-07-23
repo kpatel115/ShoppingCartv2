@@ -10,13 +10,22 @@
       <h1>Shopping Cart v2.0</h1>
     </header>
     <main>
-      <!--Quantity-->
+
+      <form id="add-form">
+        <label>Name: <input id="item-name" type="text" placeholder="Item Name"></label>
+        <label>Price: <input id="item-price" type="number" step="0.01"></label>
+        <button type="submit">Add Item</button>
+      </form>
+
       <h3 id="item-quantity"></h3>
+        <!--Quantity-->
+
       <ul id="item-list">
         <!--Cart Items-->
       </ul>
+
       <h4 id="item-total"></h4>
-      <!--Total-->
+        <!--Total-->
     </main>
     <script type="text/javascript" src="script.js"></script>
   </body>

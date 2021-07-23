@@ -1,22 +1,35 @@
 // Global variables
 const itemList = document.getElementById("item-list");
-
 const itemQuantity = document.getElementById("item-quantity");
-
 const itemTotal = document.getElementById("item-total");
+const addForm = document.getElementById("add-form");
+const itemName = document.getElementById("item-name");
+const itemPrice = document.getElementById("item-price");
 
 const cart = []
+//-------------------------------------------
+// handle add form submit
+// event listener - function handles the event
+addForm.onsubmit = function(e) {
+  e.preventDefault()
+  const name = itemName.value
+  const price = itemPrice.value
+  addItem(name, price)
+  
+}
 
 //-----------------ADD ITEMS-------------------------------
 function addItem(name, price) {
   for (let i = 0; i < cart.length; i += 1) {
     if (cart[i].name === name) {
       cart[i].qty += 1
+      showItem()
       return
     }
   }
   const item = {name, price, qty: 1}
   cart.push(item);
+  showItem()
 };
 
 //-----------------SHOW ITEMS----------------------------
