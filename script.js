@@ -11,11 +11,17 @@ const cart = []
 //-------------------Handle Clicks on List------------
 itemList.onclick = function(e) {
 //console.log("clicked")
-if (e.target && e.target.classList.contains("remove")) {
+  if (e.target && e.target.classList.contains("remove")) {
   const name = e.target.dataset.name // data-name - on button
-  removeItem(name)
+  removeItem(name) 
+  } else if (e.target && e.target.classList.contains("add1")) {
+    const name = e.target.dataset.name // data-name - on button
+    addItem(name) 
+  } else if (e.target && e.target.classList.contains("remove1")) {
+    const name = e.target.dataset.name // data-name - on button
+    removeItem(name, 1) 
   }
-}
+};
 //--------------handle add form submit-------------------
 // event listener - function handles the event
 addForm.onsubmit = function(e) {
@@ -54,8 +60,11 @@ function showItem() {
     itemString += `<li>
       ${name} 
       $${price} x ${qty} = 
-      ${qty * price} 
+      $${qty * price} 
       <button class="remove" data-name="${name}">Remove</button>
+      <button class="remove1" data-name="${name}"> - </button>
+      <button class="add1" data-name="${name}"> + </button>
+      <input class="update" type="number" placeholder="Quantity">
       </li>`
   }
   itemList.innerHTML = itemString
@@ -103,7 +112,7 @@ function removeItem(name, qty = 0){
 
 //---------------FUNCTION CALLS----------------------------------
 // Function calls  w/ parameters
-/*addItem("Apple", 0.99);
+addItem("Apple", 0.99);
 addItem("Orange", 1.29);
 addItem("Opinion", 0.02);
 addItem("Apple", 0.99);
@@ -111,10 +120,3 @@ addItem("Frisbee", 9.92);
 addItem("Apple", 0.99);
 addItem("Orange", 1.29);
 
-showItem(); 
-
-removeItem("Apple", 1)
-removeItem("Frisbee")
-
-showItem(); 
-*/
