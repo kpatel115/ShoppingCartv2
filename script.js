@@ -7,8 +7,16 @@ const itemName = document.getElementById("item-name");
 const itemPrice = document.getElementById("item-price");
 
 const cart = []
-//-------------------------------------------
-// handle add form submit
+
+//-------------------Handle Clicks on List------------
+itemList.onclick = function(e) {
+//console.log("clicked")
+if (e.target && e.target.classList.contains("remove")) {
+  const name = e.target.dataset.name // data-name - on button
+  removeItem(name)
+  }
+}
+//--------------handle add form submit-------------------
 // event listener - function handles the event
 addForm.onsubmit = function(e) {
   e.preventDefault()
@@ -16,7 +24,7 @@ addForm.onsubmit = function(e) {
   const price = itemPrice.value
   addItem(name, price)
   
-}
+};
 
 //-----------------ADD ITEMS-------------------------------
 function addItem(name, price) {
@@ -46,9 +54,12 @@ function showItem() {
     itemString += `<li>
       ${name} 
       $${price} x ${qty} = 
-      ${qty * price}</li>`
+      ${qty * price} 
+      <button class="remove" data-name="${name}">Remove</button>
+      </li>`
   }
   itemList.innerHTML = itemString
+
   itemTotal.innerHTML =`<h4>Total in cart: $${total}</h4>`
 };
 
@@ -83,6 +94,7 @@ function removeItem(name, qty = 0){
       if (cart[i].qty < 1 || qty === 0) {
         cart.splice(i, 1)
       } 
+      showItem()
       return
     }
   }
@@ -91,7 +103,7 @@ function removeItem(name, qty = 0){
 
 //---------------FUNCTION CALLS----------------------------------
 // Function calls  w/ parameters
-addItem("Apple", 0.99);
+/*addItem("Apple", 0.99);
 addItem("Orange", 1.29);
 addItem("Opinion", 0.02);
 addItem("Apple", 0.99);
@@ -105,3 +117,4 @@ removeItem("Apple", 1)
 removeItem("Frisbee")
 
 showItem(); 
+*/
