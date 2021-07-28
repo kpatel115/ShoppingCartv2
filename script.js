@@ -7,6 +7,15 @@ const itemName = document.getElementById("item-name");
 const itemPrice = document.getElementById("item-price");
 
 const cart = []
+//--------------Handle Change events on update input------------
+itemList.onchange = function(e) {
+  if (e.target && e.target.classList.contains("update")) {
+    console.log(e.target) // on change happens when press enter or click outside - lose focus
+    const name = e.target.dataset.name
+    const qty = parseInt( e.target.value )
+    updateCart(name, qty)
+  }
+}
 
 //-------------------Handle Clicks on List------------
 itemList.onclick = function(e) {
@@ -64,7 +73,7 @@ function showItem() {
       <button class="remove" data-name="${name}">Remove</button>
       <button class="remove1" data-name="${name}"> - </button>
       <button class="add1" data-name="${name}"> + </button>
-      <input class="update" type="number" placeholder="Quantity">
+      <input class="update" type="number" data-name="${name}" >
       </li>`
   }
   itemList.innerHTML = itemString
@@ -108,7 +117,20 @@ function removeItem(name, qty = 0){
     }
   }
 };
-
+//-----------------------------Update Cart-----------------
+function updateCart(name, qty) {
+  for(let i = 0; i < cart.length; i += 1) {
+    if(cart[i].name === name){
+      if (qty < 1) {
+        removeItem(name)
+        return
+      }
+    cart[i].qty = qty 
+    showItem()
+      return
+    }
+  }
+}
 
 //---------------FUNCTION CALLS----------------------------------
 // Function calls  w/ parameters
